@@ -43,6 +43,4 @@ export class OffersComponent implements OnInit {
     this.getPagedOffers()
   }
 
-
-
 }
