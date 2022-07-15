@@ -17,6 +17,7 @@ export class LoginPageComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  error: string | null = null
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthenticationService, alertService: AlertService) {
     this.alertService = alertService;
@@ -45,7 +46,7 @@ export class LoginPageComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).pipe(first()).subscribe(data => {
       this.router.navigate([this.returnUrl]);
     }, error => {
-      this.alertService.error(error)
+      this.error = "Incorect login credentials"
       this.loading = false;
     })
 

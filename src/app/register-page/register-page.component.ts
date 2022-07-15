@@ -16,6 +16,7 @@ export class RegisterPageComponent implements OnInit {
   alertService: AlertService;
   authenticationService: AuthenticationService;
   userService: UserService;
+  error: string | null = null
 
   registerForm: FormGroup = this.formBuilder.group({
     firstName: ['', Validators.required],
@@ -47,7 +48,7 @@ export class RegisterPageComponent implements OnInit {
       this.alertService.success("Registration successfull", true);
       this.router.navigate(['/login'])
     }, error => {
-      this.alertService.error(error);
+      this.error = "Incorect credentials"
       this.loading = false;
     })
   }
