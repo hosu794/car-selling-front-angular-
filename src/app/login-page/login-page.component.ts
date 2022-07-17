@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
+import { first, map } from 'rxjs';
 import { AlertService } from '../alert.service';
 import { AuthenticationService } from '../authentication.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,14 +14,16 @@ import { AuthenticationService } from '../authentication.service';
 export class LoginPageComponent implements OnInit {
 
   alertService: AlertService;
+  userService: UserService;
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
   error: string | null = null
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthenticationService, alertService: AlertService) {
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthenticationService, alertService: AlertService, userService: UserService) {
     this.alertService = alertService;
+    this.userService = userService;
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -29,7 +32,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // get return url from route parameters or default to '/'
+    this.userService.getCurrentUser().subscribe(response => {
+      if (response) this.router.navigate(['/'])
+    })
   }
 
   get f() { return this.loginForm.controls; }

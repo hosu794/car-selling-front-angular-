@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@auth0/angular-jwt": "^5.0.2",
+    "angular-jwt": "^0.1.11",
     "moment": "^2.29.3",
     "ngx-pagination": "^6.0.2",
     "rxjs": "~7.5.0",

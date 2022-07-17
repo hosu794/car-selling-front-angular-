@@ -19,14 +19,13 @@ export class AuthGuardService implements CanActivate {
     let user;
 
     this.userService.getCurrentUser().pipe(map(response => {
-      user = response
+
+      if (response) return response;
+
+      this.router.navigate(['/login'])
+      return false;
     }))
 
-    if (user) {
-      return user;
-    }
-
-    this.router.navigate(['/login'])
     return false;
 
   }

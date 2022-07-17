@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthenticationService } from './authentication.service';
 import { User, UserReqisterRequest, UserResponse } from './user.model';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { User, UserReqisterRequest, UserResponse } from './user.model';
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   getAll() {
     return this.http.get<UserResponse[]>("http://localhost:1323/users");
@@ -18,7 +19,13 @@ export class UserService {
   }
 
   getCurrentUser() {
-    return this.http.get("http://localhost:1323/user/current")
+
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set("Authorization", `Bearer ${this.authService.getToken()}`);
+
+    return this.http.get<any>("http://localhost:1323/user/current", { headers: headers })
   }
 
 }
