@@ -48,8 +48,8 @@ export class LoginPageComponent implements OnInit {
 
     this.loading = true;
 
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).pipe(first()).subscribe(data => {
-      this.router.navigate([this.returnUrl]);
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(data => {
+      this.router.navigate([this.returnUrl], { queryParams: { isLogged: true } });
     }, error => {
       this.error = "Incorect login credentials"
       this.loading = false;

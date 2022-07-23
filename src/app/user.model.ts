@@ -4,9 +4,9 @@ export interface User {
 }
 
 export interface UserResponse {
-    firstname: string
-    lastname: string
-    email: string
+    Firstname: string
+    Lastname: string
+    Email: string
 }
 
 export interface UserReqisterRequest {

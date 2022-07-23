@@ -5,6 +5,7 @@ import * as moment from "moment";
 import { User } from './user.model';
 import { LoginResponse } from './login-response.model';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
@@ -13,7 +14,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
   }
 
@@ -40,6 +41,7 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
+    this.router.navigate(["/"])
   }
 
   isLoggedOut() {
