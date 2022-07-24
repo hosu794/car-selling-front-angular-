@@ -6,7 +6,7 @@ import { User } from './user.model';
 import { LoginResponse } from './login-response.model';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { environment } from './../environments/environment';
 
 
 @Injectable({
@@ -19,7 +19,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<LoginResponse>('http://localhost:1323/login/user', { email, password }).pipe(map(user => {
+    return this.http.post<LoginResponse>(`${environment.apiUrl}/login/user`, { email, password }).pipe(map(user => {
       this.setSession(user.token)
     }))
 

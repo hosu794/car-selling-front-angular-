@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 import { User, UserReqisterRequest, UserResponse } from './user.model';
+import { environment } from './../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +13,11 @@ export class UserService {
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   getAll() {
-    return this.http.get<UserResponse[]>("http://localhost:1323/users");
+    return this.http.get<UserResponse[]>(`${environment.apiUrl}/users`);
   }
 
   register(user: UserReqisterRequest) {
-    return this.http.post("http://localhost:1323/register/user", user);
+    return this.http.post(`${environment.apiUrl}/register/user`, user);
   }
 
   getCurrentUser() {
@@ -25,7 +27,7 @@ export class UserService {
       .set('Access-Control-Allow-Origin', '*')
       .set("Authorization", `Bearer ${this.authService.getToken()}`);
 
-    return this.http.get<any>("http://localhost:1323/user/current", { headers: headers })
+    return this.http.get<any>(`${environment.apiUrl}/user/current`, { headers: headers })
   }
 
 }
