@@ -11,8 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OffersComponent } from './offers/offers.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ProfileComponent } from './profile/profile.component';
-import { SellcarComponent } from './sellcar/sellcar.component';
 
 
 @NgModule({
@@ -22,8 +20,6 @@ import { SellcarComponent } from './sellcar/sellcar.component';
     LoginPageComponent,
     RegisterPageComponent,
     OffersComponent,
-    ProfileComponent,
-    SellcarComponent
   ],
   imports: [
     BrowserModule,
