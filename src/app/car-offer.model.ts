@@ -4,7 +4,7 @@ export interface CarOffer {
     from: string
     brand: string
     model: string
-    generation: string
+    generation: number
     mileage: number
     capacity: number
     fuel: string
@@ -25,12 +25,11 @@ export interface CarOffer {
 }
 
 export interface CarOfferRequest {
-    id: number
     type: string
     from: string
     brand: string
     model: string
-    generation: string
+    generation: number
     mileage: number
     capacity: number
     fuel: string

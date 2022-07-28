@@ -1,0 +1,331 @@
+<div class="flex justify-center align-center flex items-center justify-center mt-10">
+    <div class="w-full max-w-2xl">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="offerCreateForm"
+            enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="type">
+                        Type
+                    </label>
+                    <input formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="type" type="text" placeholder="Type">
+                    <div *ngIf="submitted && f.type.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.type.errors.required">Type is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="From">
+                        From
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="from" type="text" placeholder="From" formControlName="from">
+                    <div *ngIf="submitted && f.from.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.from.errors.required">From is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="brand">
+                        Brand
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="brand" type="text" placeholder="Brand" formControlName="brand">
+                    <div *ngIf="submitted && f.brand.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.brand.errors.required">Brand is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="model">
+                        Model
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="model" type="text" placeholder="Model" formControlName="model">
+                    <div *ngIf="submitted && f.model.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.model.errors.required">Model is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="generation">
+                        Generation
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="generation" type="number" placeholder="" formControlName="generation">
+                    <div *ngIf="submitted && f.generation.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.generation.errors.required">Generation is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="mileage">
+                        Mileage
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="mileage" type="number" placeholder="" formControlName="mileage">
+                    <div *ngIf="submitted && f.mileage.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.mileage.errors.required">Mileage is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="capacity">
+                        Capacity
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="capacity" type="number" placeholder="" formControlName="capacity">
+                    <div *ngIf="submitted && f.capacity.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.capacity.errors.required">Capacity is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="fuel">
+                        Fuel
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="fuel" type="text" placeholder="" formControlName="fuel">
+                    <div *ngIf="submitted && f.fuel.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.fuel.errors.required">Fuel is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="power">
+                        Power
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="power" type="text" placeholder="" formControlName="power">
+                    <div *ngIf="submitted && f.power.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.power.errors.required">Power is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="transmission">
+                        Transmission
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="transmission" type="number" placeholder="" formControlName="transmission">
+                    <div *ngIf="submitted && f.transmission.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.transmission.errors.required">Transmission is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="drive">
+                        Drive
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="drive" type="number" placeholder="" formControlName="drive">
+                    <div *ngIf="submitted && f.drive.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.drive.errors.required">Drive is required</div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="vin">
+                        Vin
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="vin" type="text" placeholder="" formControlName="vin">
+                    <div *ngIf="submitted && f.vin.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.vin.errors.required">Vin is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="bodyType">
+                        Body Type
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="bodyType" type="text" placeholder="" formControlName="bodyType">
+                    <div *ngIf="submitted && f.bodyType.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.bodyType.errors.required">Body Type is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="doorCount">
+                        Door count
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="doorCount" type="number" placeholder="" formControlName="doorCount">
+                    <div *ngIf="submitted && f.doorCount.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.doorCount.errors.required">Door count is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="color">
+                        Color
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="color" type="text" placeholder="" formControlName="color">
+                    <div *ngIf="submitted && f.color.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.color.errors.required">Color is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="colorType">
+                        Color Type
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="colorType" type="text" placeholder="" formControlName="colorType">
+                    <div *ngIf="submitted && f.colorType.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.colorType.errors.required">Color Type is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="country">
+                        Country
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="country" type="text" placeholder="" formControlName="country">
+                    <div *ngIf="submitted && f.country.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.country.errors.required">Country is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="vat">
+                        Vat
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="vat" type="number" placeholder="" formControlName="vat">
+                    <div *ngIf="submitted && f.vat.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.vat.errors.required">Vat is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="firstRegistration">
+                        First Registration
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="vat" type="date" placeholder="" formControlName="firstRegistration">
+                    <div *ngIf="submitted && f.firstRegistration.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.firstRegistration.errors.required">First Registration is required</div>
+                    </div>
+                </div>
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="conditionalCar">
+                        Not Crashed
+                    </label>
+                    <select name="conditionalCar" id="conditionalCar" formControlName="conditionalCar">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <!-- <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="conditionalCar" type="text" placeholder="" formControlName="conditionalCar"> -->
+                    <div *ngIf="submitted && f.conditionalCar.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.conditionalCar.errors.required">Conditional Car is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between align-center">
+
+                <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="leasing">
+                        Leasing
+                    </label>
+                    <select name="leasing" id="leasing" formControlName="leasing">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <!-- <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="leasing" type="text" placeholder="" formControlName="leasing"> -->
+                    <div *ngIf="submitted && f.leasing.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.leasing.errors.required">Leasing is required</div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="images">
+                    Images
+                </label>
+                <input multiple
+                    class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="images" type="file" placeholder="" formControlName="images">
+                <div *ngIf="submitted && f.images.errors" class="text-red-500 text-xs italic">
+                    <div *ngIf="f.images.errors.required">Conditional Car is required</div>
+                </div>
+            </div> -->
+            <div *ngFor="let progressInfo of progressInfos" class="mb-2">
+                <span>{{ progressInfo.fileName }}</span>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                        attr.aria-valuenow="{{ progressInfo.value }}" aria-valuemin="0" aria-valuemax="100"
+                        [ngStyle]="{ width: progressInfo.value + '%' }">
+                        {{ progressInfo.value }}%
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <label class="btn btn-default p-0">
+                        <input type="file" accept="image/*" name="files" multiple (change)="selectFiles($event)" />
+                    </label>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="uploadFiles()">
+                        Upload
+                    </button>
+                </div>
+            </div>
+            <div>
+                <img *ngFor='let preview of previews' [src]="preview" class="preview">
+            </div>
+            <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+                <ul *ngFor="let msg of message; let i = index">
+                    <li>{{ msg }}</li>
+                </ul>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">List of Images</div>
+                <ul class="list-group list-group-flush" *ngFor="let image of imageInfos | async">
+                    <li class="list-group-item">
+                        <p><a href="{{ image.url }}">{{ image.name }}</a></p>
+                        <img src="{{ image.url }}" alt="{{ image.name }}" height="80px" />
+                    </li>
+                </ul>
+            </div>
+            <p *ngIf="error" class="text-red-500 text-xs italic">{{error}}</p>
+            <div class="flex items-center justify-between">
+                <button [disabled]="loading"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Create Offer
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                </button>
+            </div>
+        </form>
+        <p class="text-center text-gray-500 text-xs">
+            &copy;2022 CarSell service. All rights reserved.
+        </p>
+    </div>
+
+</div>
