@@ -48,3 +48,8 @@ export interface CarOfferRequest {
     conditioncar: number
     leasing: number
 }
+
+export interface CarOfferResponse {
+    message: string
+    offer_id: number
+}

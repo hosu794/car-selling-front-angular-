@@ -1,3 +1,4 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,7 +24,7 @@ export class SellcarComponent implements OnInit {
   previews: string[] = [];
   imageInfos?: Observable<any>;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private carService: CarOfferService) {
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private carService: CarOfferService, private carOfferService: CarOfferService) {
 
     this.offerCreateForm = this.formBuilder.group({
       type: ['', Validators.required],
@@ -50,41 +51,37 @@ export class SellcarComponent implements OnInit {
       leasing: [0, Validators.required],
       // images: [null, Validators.required]
     })
-
-
-
   }
 
   get f() { return this.offerCreateForm.controls; }
 
-  uploadFiles(): void {
+  uploadFiles(offerId: number): void {
     this.message = [];
     if (this.selectedFiles) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.upload(i, this.selectedFiles[i]);
+        this.upload(i, this.selectedFiles[i], offerId);
       }
     }
   }
 
-  upload(idx: number, file: File): void {
+  upload(idx: number, file: File, offerId: number): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
     if (file) {
-      console.log(file);
-      // this.uploadService.upload(file).subscribe(
-      //   (event: any) => {
-      //     if (event.type === HttpEventType.UploadProgress) {
-      //       this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
-      //     } else if (event instanceof HttpResponse) {
-      //       const msg = 'Uploaded the file successfully: ' + file.name;
-      //       this.message.push(msg);
-      //       this.imageInfos = this.uploadService.getFiles();
-      //     }
-      //   },
-      //   (err: any) => {
-      //     this.progressInfos[idx].value = 0;
-      //     const msg = 'Could not upload the file: ' + file.name;
-      //     this.message.push(msg);
-      //   });
+      this.carOfferService.uploadFile(file, offerId).subscribe(
+        (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
+          } else if (event instanceof HttpResponse) {
+            const msg = 'Uploaded the file successfully: ' + file.name;
+            this.message.push(msg);
+            // this.imageInfos = this.uploadService.getFiles();
+          }
+        },
+        (err: any) => {
+          this.progressInfos[idx].value = 0;
+          const msg = 'Could not upload the file: ' + file.name;
+          this.message.push(msg);
+        });
     }
   }
 
@@ -138,8 +135,10 @@ export class SellcarComponent implements OnInit {
       leasing: parseInt(this.offerCreateForm.value.leasing)
     }
 
-    this.carService.createOffer(newOffer).subscribe(response => {
-      console.log(response);
+    this.carService.createOffer(newOffer).subscribe(data => {
+
+      this.uploadFiles(data.offer_id)
+
     })
 
   }

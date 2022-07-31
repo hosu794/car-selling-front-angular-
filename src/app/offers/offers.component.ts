@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CarOfferService } from '../car-offer.service';
-import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-offers',
@@ -10,7 +9,7 @@ import { UserService } from '../user.service';
 export class OffersComponent implements OnInit {
 
   offers: Array<any> = []
-  currentPage: number = 0;
+  currentPage: number = 1;
   total: number = 0;
   perPage: number = 0;
   totalPages: number = 0;
@@ -26,8 +25,6 @@ export class OffersComponent implements OnInit {
   getPagedOffers() {
 
     this.offerService.getPaginatedCarOffers(this.currentPage).subscribe((response: any) => {
-
-      console.log(response);
 
       this.offers = [this.offers, ...response.data]
       this.total = response.total;
