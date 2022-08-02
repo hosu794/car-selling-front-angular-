@@ -1,6 +1,6 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CarOfferRequest } from '../car-offer.model';
@@ -23,6 +23,7 @@ export class SellcarComponent implements OnInit {
   message: string[] = [];
   previews: string[] = [];
   imageInfos?: Observable<any>;
+  @ViewChild("fileInput", { static: false }) fileInput: any;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private carService: CarOfferService, private carOfferService: CarOfferService) {
 
@@ -49,6 +50,7 @@ export class SellcarComponent implements OnInit {
       notCrashed: [0, Validators.required],
       conditionalCar: [0, Validators.required],
       leasing: [0, Validators.required],
+      price: [0, Validators.required]
       // images: [null, Validators.required]
     })
   }
@@ -61,6 +63,9 @@ export class SellcarComponent implements OnInit {
       for (let i = 0; i < this.selectedFiles.length; i++) {
         this.upload(i, this.selectedFiles[i], offerId);
       }
+
+
+
     }
   }
 
@@ -94,7 +99,6 @@ export class SellcarComponent implements OnInit {
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
-          console.log(e.target.result);
           this.previews.push(e.target.result);
         };
         reader.readAsDataURL(this.selectedFiles[i]);
@@ -132,14 +136,39 @@ export class SellcarComponent implements OnInit {
       firstRegistration: this.offerCreateForm.value.firstRegistration,
       notcrashed: parseInt(this.offerCreateForm.value.notCrashed),
       conditioncar: parseInt(this.offerCreateForm.value.conditionalCar),
-      leasing: parseInt(this.offerCreateForm.value.leasing)
+      leasing: parseInt(this.offerCreateForm.value.leasing),
+      price: parseInt(this.offerCreateForm.value.price)
     }
 
-    this.carService.createOffer(newOffer).subscribe(data => {
+    if (this.selectedFiles) {
 
-      this.uploadFiles(data.offer_id)
+      this.carService.createOffer(newOffer).subscribe(data => {
 
-    })
+        this.uploadFiles(data.offer_id);
+        this.offerCreateForm.reset();
+        this.offerCreateForm.markAsUntouched();
+        Object.keys(this.offerCreateForm.controls).forEach((name) => {
+          const control = this.offerCreateForm.controls[name];
+          control.setErrors(null);
+        })
+
+        this.fileInput.nativeElement.value = "";
+        this.progressInfos = [];
+        this.previews = [];
+        this.message = [];
+        this.loading = false;
+
+
+      })
+
+      this.loading = false;
+
+    } else {
+      this.loading = false;
+
+      const msg = 'Not uploaded any image:';
+      this.message.push(msg);
+    }
 
   }
 

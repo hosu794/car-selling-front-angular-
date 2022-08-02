@@ -2,7 +2,7 @@
     <div class="w-full max-w-2xl">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" [formGroup]="offerCreateForm"
             enctype="multipart/form-data" (ngSubmit)="onSubmit()">
-            <div class="flex justify-between align-center">
+            <div class=" flex justify-between align-center">
                 <div class="">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="type">
                         Type
@@ -131,7 +131,7 @@
                         class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         id="drive" type="number" placeholder="" formControlName="drive">
                     <div *ngIf="submitted && f.drive.errors" class="text-red-500 text-xs italic">
-                        <div *ngIf="f.drive.errors.required">Drive is required</div>
+                        #myForm="ngForm" <div *ngIf="f.drive.errors.required">Drive is required</div>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -220,6 +220,17 @@
             </div>
             <div class="flex justify-between align-center">
                 <div class="">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
+                        Price
+                    </label>
+                    <input
+                        class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="price" type="number" placeholder="" formControlName="price">
+                    <div *ngIf="submitted && f.price.errors" class="text-red-500 text-xs italic">
+                        <div *ngIf="f.price.errors.required">Price is required</div>
+                    </div>
+                </div>
+                <div class="">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="firstRegistration">
                         First Registration
                     </label>
@@ -230,6 +241,8 @@
                         <div *ngIf="f.firstRegistration.errors.required">First Registration is required</div>
                     </div>
                 </div>
+            </div>
+            <div class="flex justify-between align-center">
                 <div class="">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="conditionalCar">
                         Not Crashed
@@ -245,8 +258,6 @@
                         <div *ngIf="f.conditionalCar.errors.required">Conditional Car is required</div>
                     </div>
                 </div>
-            </div>
-            <div class="flex justify-between align-center">
 
                 <div class="">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="leasing">
@@ -288,7 +299,8 @@
             <div class="row">
                 <div class="col-8">
                     <label class="btn btn-default p-0">
-                        <input type="file" accept="image/*" name="files" multiple (change)="selectFiles($event)" />
+                        <input #fileInput type="file" accept="image/*" name="files" multiple
+                            (change)="selectFiles($event)" />
                     </label>
                 </div>
                 <div class="col-4">
@@ -300,7 +312,7 @@
             <div>
                 <img *ngFor='let preview of previews' [src]="preview" class="preview">
             </div>
-            <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
+            <div *ngIf="message.length" class="text-red-500 text-xs italic" role="alert">
                 <ul *ngFor="let msg of message; let i = index">
                     <li>{{ msg }}</li>
                 </ul>

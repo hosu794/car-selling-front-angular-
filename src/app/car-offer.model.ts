@@ -25,6 +25,7 @@ export interface CarOffer {
 }
 
 export interface CarOfferRequest {
+    price: number
     type: string
     from: string
     brand: string

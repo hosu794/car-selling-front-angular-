@@ -26,7 +26,9 @@ export class OffersComponent implements OnInit {
 
     this.offerService.getPaginatedCarOffers(this.currentPage).subscribe((response: any) => {
 
-      this.offers = [this.offers, ...response.data]
+      console.log(response);
+
+      this.offers = [...response.data]
       this.total = response.total;
       this.perPage = response.per_page;
       this.totalPages = response.total_pages;
